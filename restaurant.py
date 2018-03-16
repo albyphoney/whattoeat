@@ -1,10 +1,14 @@
-class Restaurant:
-    def __init__(self, rest_items):
+class Restaurant():
+    def __init__(self, rest_id, rest_name, rest_items, rest_reviews, rest_review_ratings):
     	self.ID = rest_id
+    	self.name = rest_name
+    	self.items = rest_items
+    	self.reviews = rest_reviews
+    	self.review_ratings = rest_review_ratings
 
     def get_id(self):
     	"""Returns the restaurant ID"""
-    	return self.restaurant_id
+    	return self.ID
     
     def get_name(self):
     	"""Returns the restaurant name"""
@@ -13,14 +17,15 @@ class Restaurant:
     def get_items(self):
     	"""Returns the restaurant items"""
     	return self.items
-    
-    def get_avg_rating(self):
-    	"""Returns the average restaurant rating"""
-    	return self.avg_rating
 
-    def get_reviews(self):
+    #The reviews and review ratings indeces correspond to each other
+    def get_review_comments(self):
     	"""Adds review to list of reviews for the restaurant"""
-    	self.restaurant_reviews.add(review)
+    	return self.reviews
+
+    def get_review_ratings(self):
+    	"""Adds review to list of reviews for the restaurant"""
+    	return self.review_ratings
 
 
 
