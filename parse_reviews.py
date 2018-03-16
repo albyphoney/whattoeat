@@ -31,4 +31,4 @@ def parseRestaurantItems():
 
 		return restaurant_list
 		
-parseRestaurantItems()
+restaurant_list = parseRestaurantItems()
