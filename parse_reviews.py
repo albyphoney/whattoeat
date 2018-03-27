@@ -30,7 +30,7 @@ def parseRestaurantItems():
 		restaurant_list.append(Restaurant(rest_info[i]['id'], rest_info[i]['name'], item_names, review_comments, review_ratings))
 	return restaurant_list
 
-restaurant_list = parseRestaurantItems()
-print(len(restaurant_list[0].reviews))
+#restaurant_list = parseRestaurantItems()
+#print(len(restaurant_list[0].review))
 # for i in range(len(restaurant_list)):
 # 	print(restaurant_list[i].items)
