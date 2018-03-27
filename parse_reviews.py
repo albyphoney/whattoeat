@@ -28,7 +28,9 @@ def parseRestaurantItems():
 
 		# Adds Restaurant object to a list of all restaurants
 		restaurant_list.append(Restaurant(rest_info[i]['id'], rest_info[i]['name'], item_names, review_comments, review_ratings))
+	return restaurant_list
 
-		return restaurant_list
-		
 restaurant_list = parseRestaurantItems()
+print(restaurant_list[0].reviews[3])
+# for i in range(len(restaurant_list)):
+# 	print(restaurant_list[i].items)
