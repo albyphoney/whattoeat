@@ -31,6 +31,6 @@ def parseRestaurantItems():
 	return restaurant_list
 
 restaurant_list = parseRestaurantItems()
-print(restaurant_list[0].reviews[3])
+print(len(restaurant_list[0].reviews))
 # for i in range(len(restaurant_list)):
 # 	print(restaurant_list[i].items)
