@@ -4,11 +4,10 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./jquery-csv.js"></script>
     <script type="text/javascript" src="./restaurant.js"></script>
-    <input type = "file" id="csvFileInput" accept=".csv">
     <title>What to Eat</title>
     <link rel="stylesheet" href="style-restaurant.css">
   </head>
-  <body >
+  <body>
     <header>
       <div class="container">
         <div id="branding">
@@ -27,27 +26,11 @@
     <section id="showcase">
       <div class="container">
         <h1>Top 10 Restaurant Items</h1>
-            <!--<ul>
-                <li>1.</li>
-                <li>2.</li>
-                <li>3.</li>
-                <li>4.</li>
-                <li>5.</li>
-                <li>6.</li>
-                <li>7.</li>
-                <li>8.</li>
-                <li>9.</li>
-                <li>10.</li>
-            </ul> -->
+          <table id="tableView"></table>
       </div>
     </section>
 
     <button onclick="getData()" id="test"> Click Me! </button>
-
-   
-
-    
-
     <footer>
       <p>IEOR 135 SP18</p>
     </footer>
