@@ -55,12 +55,16 @@ def reviews_cleaner(reviews):
 	num_items = len(reviews)
 	reviews_clean = []
 	for i in range(0,num_items): 
-	    clean_item = cleaner(reviews[i])
-	    reviews_clean.append(clean_item)
+		review_clean_sentences = []
+		review_sentences = reviews[i].split(".")
+		for sentence in review_sentences:
+			if sentence != "":
+				clean_item = cleaner(sentence)
+				review_clean_sentences.append(clean_item)
+		reviews_clean.append(review_clean_sentences)
 	return reviews_clean
 
 def get_wordnet_pos(treebank_tag):
-
     if treebank_tag.startswith('J'):
         return wordnet.ADJ
     elif treebank_tag.startswith('V'):
@@ -141,14 +145,18 @@ def menu_filter(menu):
 def review_filter(reviews):
 	reviews_clean = reviews_cleaner(reviews)
 	reviews_clean_wnl = []
-	for i in range(len(reviews_clean)):	    
-	    wnl_stems = []
-	    token_tag = pos_tag(reviews_clean[i].split())
-	    #print(token_tag)
-	    for pair in token_tag:
-	        res = wnl.lemmatize(pair[0],pos=get_wordnet_pos(pair[1]))
-	        wnl_stems.append(res)
-	    reviews_clean_wnl.append(' '.join(wnl_stems))
+	for i in range(len(reviews_clean)):
+		clean_sentence_wnl = []
+		for j in range(len(reviews_clean[i])):	    
+		    wnl_stems = []
+		    token_tag = pos_tag(reviews_clean[i][j].split())
+		    for pair in token_tag:
+		        res = wnl.lemmatize(pair[0],pos=get_wordnet_pos(pair[1]))
+		        wnl_stems.append(res)
+		        new_wnl = ' '.join(wnl_stems)
+		        new_wnl = ' ' + new_wnl + ' '
+		    clean_sentence_wnl.append(new_wnl)
+		reviews_clean_wnl.append(clean_sentence_wnl)
 	return reviews_clean_wnl
 
 
