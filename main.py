@@ -45,11 +45,14 @@ for restaurant in restaurant_list:
 	menu_info = track_menu_items(menu_distinct, word_to_menu, reviews_clean_wnl, restaurant.review_ratings)
 	top_ten_ordered = sorted(menu_info.items(), key=lambda x: x[1], reverse=True)[:10]
 	#top_ten_reviewed = sorted(menu_info.items(), key=lambda x: x[1][1], reverse=True)[:10]
+	top_dishes = [x[0].replace(',', '') for x in top_ten_ordered]
+	top_count = [x[1][0] for x in top_ten_ordered]
+	top_yelp = [x[1][1] for x in top_ten_ordered]
+	top_senti = [x[1][2] for x in top_ten_ordered]
 	with open('restaurant.csv', 'a') as csvfile:
 		restaurant_writer = csv.writer(csvfile)
-		restaurant_writer.writerow([restaurant.get_id(), restaurant.get_name(), top_ten_ordered])
-	print(top_ten_ordered)
-	print("%n")
+		restaurant_writer.writerow([restaurant.get_id(), restaurant.get_name(), top_dishes, top_count, top_yelp, top_senti])
+print("Complete")
 
 
 

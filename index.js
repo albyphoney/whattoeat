@@ -1,6 +1,6 @@
 function searchName() {
-	var restaurantName = $('#restaurantName').val().toLowerCase();
-	var restaurantExists = (names.indexOf(restaurantName) > -1);
+	var restaurantName = $('#restaurantName').val();
+	var restaurantExists = (names.indexOf(restaurantName.toLowerCase()) > -1);
 	localStorage.restaurantName = restaurantName;
 	if (restaurantExists) {
 		return true;
