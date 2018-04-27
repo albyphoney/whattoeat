@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="overflow: hidden;">
+<html>
   <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,8 +20,16 @@
     <section>
       <div id="tableView" class="container">
         <h1 id="restaurantName"></h1>
-            <!-- <table class="table table-striped table-hover" id="tableView"></table> -->
       </div>
+      <div id="orderModal" class="modal fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true" style="max-height: 350px; width:75%;vertical-align:middle;position:absolute;top: 50%;left: 50%;transform: translate(-50%, -50%) !important;">
+      <div class="modal-content">
+        <div class="modal-header" style="height:60px;position:relative;width:100%;background-color:#E5504C">
+            <button type="button" style="color:#ffffff" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h4 style="color:#ffffff">Reviews</h4>
+        </div>
+        <div id="orderDetails" class="modal-body"></div>
+      </div>
+    </div>
     </section>
     <footer>
       <img src="./img/logo.png" alt="What To Eat Logo" style="display:block; margin-left:auto; margin-right:auto; width:3%">
