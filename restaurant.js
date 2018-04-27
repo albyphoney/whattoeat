@@ -1,14 +1,14 @@
-function appendToTable(table, rowData) {
-	var row = $('<tr></tr>');
+function home() {
+	window.location.href="../index.html"
+}
+
+function appendToTable(table, rowData, i) {
+	var row = $('<tr data-toggle="modal" data-target="#orderModal" data-id="'+ i.toString() + '"></tr>');
 	$(rowData).each(function (j, cellData) {
 		row.append($('<td>'+cellData+'</td>'));
 	});
 	table.append(row);
 	return table;
-}
-
-function home() {
-	window.location.href="../index.html"
 }
 
 function appendHeader(table, rowData) {
@@ -20,6 +20,7 @@ function appendHeader(table, rowData) {
 	// table.append(row);
 	return table;
 }
+
 function getData(restaurantName) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function(){
@@ -50,7 +51,7 @@ function getData(restaurantName) {
     				var table = $('<table class="table table-striped table-hover"><thead></thead><tbody></tbody></table>');
     				$('#tableView').append(appendHeader(table, ['Dish Name', 'Total Yelp Reviews', 'Average Yelp Review', 'Average Sentiment Review']))
     				for (var k = 0; k < dishes.length; k++) {
-    					$('#tableView').append(appendToTable(table, [dishes[k], count[k], yelp[k], senti[k]]));
+    					$('#tableView').append(appendToTable(table, [dishes[k], count[k], yelp[k], senti[k]], k));
     				}
     			}
     		}
@@ -59,6 +60,19 @@ function getData(restaurantName) {
 	xmlhttp.open("GET","http://localhost:8000/restaurant.csv",true);
 	xmlhttp.send();
 }
+
+$(function(){
+    $('#orderModal').modal({
+        keyboard: true,
+        backdrop: "static",
+        show:false,
+
+    }).on('show.bs.modal', function(){ //subscribe to show method
+          var getIdFromRow = $(event.target).closest('tr').data('id'); //get the id from tr
+        //make your ajax call populate items or what even you need
+        $(this).find('#orderDetails').html($('<b> This dish tastes great. </b>'))
+    });
+});
 
 document.addEventListener('DOMContentLoaded', function() {
 	$("#restaurantName").html(localStorage.restaurantName + "'s Top 10 Items");
