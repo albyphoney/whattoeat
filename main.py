@@ -58,6 +58,8 @@ for restaurant in restaurant_list:
 	reviews = []
 	for i in range(10):
 		if len(top_ten_ordered) > i:
+			for j in range(len(top_ten_ordered[i][1][3])):
+				top_ten_ordered[i][1][3][j] = top_ten_ordered[i][1][3][j].replace(',', '')
 			reviews.append(top_ten_ordered[i][1][3])
 		else:
 			reviews.append([])

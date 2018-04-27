@@ -48,6 +48,14 @@ function getData(restaurantName) {
 						var clean_senti = senti[j].replace(/[\[\]']+/g,"");
 						senti[j] = clean_senti
     				}
+    				for (var l = 6; l < 16; l++) {
+    					// Up to 3 reviews for dish l
+    					var clean_reviews = data[i][l].replace(/[\[\]']+/g,"");
+    					var final_reviews = clean_reviews.replace(/\s{2,}/g," ");
+    					var split_reviews = final_reviews.split(',');
+    					foodReviews.push(split_reviews);
+    				}
+    				console.log(foodReviews);
     				var table = $('<table class="table table-striped table-hover"><thead></thead><tbody></tbody></table>');
     				$('#tableView').append(appendHeader(table, ['Dish Name', 'Total Yelp Reviews', 'Average Yelp Review', 'Average Sentiment Review']))
     				for (var k = 0; k < dishes.length; k++) {
@@ -74,6 +82,8 @@ $(function(){
     });
 });
 
+//foodreviews: each index is an of top 10 dishes for restaurant, each subarray is up to 3 reviews
+var foodReviews = [];
 document.addEventListener('DOMContentLoaded', function() {
 	$("#restaurantName").html(localStorage.restaurantName + "'s Top 10 Items");
     getData(localStorage.restaurantName);
