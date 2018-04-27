@@ -21,12 +21,14 @@
       <div id="tableView" class="container">
         <h1 id="restaurantName"></h1>
       </div>
-      <div id="orderModal" class="modal fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true" style="background-color:#ffffff;max-height: 350px; width:75%;vertical-align:middle;position:absolute;top: 50%;left: 50%;transform: translate(-50%, -50%) !important;">
-      <div class="modal-header" style="height:60px">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-          <h4>Reviews</h4>
+      <div id="orderModal" class="modal fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true" style="max-height: 350px; width:75%;vertical-align:middle;position:absolute;top: 50%;left: 50%;transform: translate(-50%, -50%) !important;">
+      <div class="modal-content">
+        <div class="modal-header" style="height:60px;position:relative;width:100%;background-color:#E5504C">
+            <button type="button" style="color:#ffffff" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h4 style="color:#ffffff">Reviews</h4>
+        </div>
+        <div id="orderDetails" class="modal-body"></div>
       </div>
-      <div id="orderDetails" class="modal-body" style="overflow-y: auto"></div>
     </div>
     </section>
     <footer>

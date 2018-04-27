@@ -76,9 +76,14 @@ $(function(){
         show:false,
 
     }).on('show.bs.modal', function(){ //subscribe to show method
-          var getIdFromRow = $(event.target).closest('tr').data('id'); //get the id from tr
-        //make your ajax call populate items or what even you need
-        $(this).find('#orderDetails').html($('<b> This dish tastes great. </b>'))
+        var getIdFromRow = $(event.target).closest('tr').data('id'); //get the id from tr
+        var modalTable = $('<table class="table table-striped"><thead></thead><tbody></tbody></table>');
+        for (var i = 0; i < foodReviews[getIdFromRow].length; i++) {
+        	var row = $('<tr></tr>');
+        	row.append($('<td>' + foodReviews[getIdFromRow][i] + '</td>'));
+        	modalTable.append(row);
+        }
+        $('#orderDetails').append(modalTable);
     });
 });
 
