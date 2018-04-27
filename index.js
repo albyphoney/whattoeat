@@ -13,10 +13,9 @@ function searchName() {
 function getNames() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function(){
-  		if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+  		if(xmlhttp.status == 200 && xmlhttp.readyState == 4) {
     		csv = xmlhttp.responseText;
     		var data = $.csv.toArrays(csv);
-    		// var names = new Array(data.length)
     		for (var i = 0; i < data.length; i++) {
     			names.push(data[i][1].toLowerCase());
     		}
