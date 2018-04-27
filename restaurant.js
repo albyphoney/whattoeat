@@ -7,6 +7,10 @@ function appendToTable(table, rowData) {
 	return table;
 }
 
+function home() {
+	window.location.href="../index.html"
+}
+
 function appendHeader(table, rowData) {
 	var row = $('<tr></tr>');
 	$(rowData).each(function (j, cellData) {
