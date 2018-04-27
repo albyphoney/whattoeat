@@ -10,19 +10,24 @@ function arrayToTable(tableData) {
 	return table;
 }
 
-function getData() {
+function getData(restaurantName) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function(){
   		if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
     		csv = xmlhttp.responseText;
     		var data = $.csv.toArrays(csv);
-			$('#tableView').append(arrayToTable(data));
+    		for (var i = 0; i < data.length; i++) {
+    			if (restaurantName.toLowerCase() === data[i][1].toLowerCase()) { 
+    				$('#tableView').append(arrayToTable([data[i]]));
+    			}
+    		}
   		}
 	};
 	xmlhttp.open("GET","http://localhost:8000/restaurant.csv",true);
 	xmlhttp.send();
 }
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     getData();
-// }, false);
+document.addEventListener('DOMContentLoaded', function() {
+    getData(localStorage.restaurantName);
+    // getData('Versailles');
+	}, false);
