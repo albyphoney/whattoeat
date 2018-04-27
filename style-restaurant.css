@@ -97,15 +97,15 @@ header a:hover{
 
 
 footer{
-  padding:20px;
-  margin-top:0px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   color:#ffffff;
   background-color:#E5504C;
-  text-align: center;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  margin:auto;
+  text-align: center;
 }
 
   header{
