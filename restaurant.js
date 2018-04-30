@@ -17,7 +17,6 @@ function appendHeader(table, rowData) {
 		row.append($('<th>'+cellData+'</th>'));
 	});
 	row.appendTo(table.find("thead"))
-	// table.append(row);
 	return table;
 }
 
@@ -31,6 +30,7 @@ function getData(restaurantName) {
     			if (restaurantName.toLowerCase() === data[i][1].toLowerCase()) {
     				//Parsing string
     				var dishes = data[i][2].split(',');
+    				dishNames = dishes;
     				var count = data[i][3].split(',');
     				var yelp = data[i][4].split(',');
     				var senti = data[i][5].split(',');
@@ -75,9 +75,11 @@ $(function(){
         backdrop: "static",
         show:false,
 
-    }).on('show.bs.modal', function(){ //subscribe to show method
-        var getIdFromRow = $(event.target).closest('tr').data('id'); //get the id from tr
-        var modalTable = $('<table class="table table-striped"><thead></thead><tbody></tbody></table>');
+    }).on('show.bs.modal', function(){
+    	$("#modalTable").remove();
+        var getIdFromRow = $(event.target).closest('tr').data('id');
+        $('#dishName').html("Reviews for " + dishNames[getIdFromRow]);
+        var modalTable = $('<table id="modalTable" class="table table-striped"><thead></thead><tbody></tbody></table>');
         for (var i = 0; i < foodReviews[getIdFromRow].length; i++) {
         	var row = $('<tr></tr>');
         	row.append($('<td>' + foodReviews[getIdFromRow][i] + '</td>'));
@@ -89,8 +91,8 @@ $(function(){
 
 //foodreviews: each index is an of top 10 dishes for restaurant, each subarray is up to 3 reviews
 var foodReviews = [];
+var dishNames = [];
 document.addEventListener('DOMContentLoaded', function() {
 	$("#restaurantName").html(localStorage.restaurantName + "'s Top 10 Items");
     getData(localStorage.restaurantName);
-    // getData('Versailles');
 	}, false);
