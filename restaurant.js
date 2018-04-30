@@ -55,7 +55,16 @@ function getData(restaurantName) {
     					var split_reviews = final_reviews.split(',');
     					foodReviews.push(split_reviews);
     				}
-    				console.log(foodReviews);
+    				for (var m = 16; m < 26; m++) {
+    					var clean_word = data[i][m].replace(/[\[\]']+/g,"");
+    					var final_word = clean_word.replace(/\s{2,}/g," ");
+    					var split_words = final_word.split(', ');
+    					for (var n = 0; n < split_words.length; n++) {
+    						split_words[n] = split_words[n].split(' ');
+    					}
+    					hitWords.push(split_words);
+    				}
+    				console.log(hitWords);
     				var table = $('<table class="table table-striped table-hover"><thead></thead><tbody></tbody></table>');
     				$('#tableView').append(appendHeader(table, ['Dish Name', 'Total Yelp Reviews', 'Average Yelp Review', 'Average Sentiment Review']))
     				for (var k = 0; k < dishes.length; k++) {
@@ -82,16 +91,24 @@ $(function(){
         var modalTable = $('<table id="modalTable" class="table table-striped"><thead></thead><tbody></tbody></table>');
         for (var i = 0; i < foodReviews[getIdFromRow].length; i++) {
         	var row = $('<tr></tr>');
-        	row.append($('<td>' + foodReviews[getIdFromRow][i] + '</td>'));
+        	var reviewBody = foodReviews[getIdFromRow][i];
+        	var wordsToBold = hitWords[getIdFromRow][i];
+        	var boldedReview = makeBold(reviewBody, wordsToBold);
+        	row.append($('<td>' + boldedReview + '</td>'));
         	modalTable.append(row);
         }
         $('#orderDetails').append(modalTable);
     });
 });
 
-//foodreviews: each index is an of top 10 dishes for restaurant, each subarray is up to 3 reviews
+function makeBold(input, wordsToBold) {
+    return input.replace(new RegExp('(\\b)(' + wordsToBold.join('|') + ')(\\b)','ig'), '$1<b>$2</b>$3');
+}
+
+//foodReviews: each index is an of top 10 dishes for restaurant, each subarray is up to 3 reviews
 var foodReviews = [];
 var dishNames = [];
+var hitWords = [];
 document.addEventListener('DOMContentLoaded', function() {
 	$("#restaurantName").html(localStorage.restaurantName + "'s Top 10 Items");
     getData(localStorage.restaurantName);
