@@ -21,7 +21,6 @@ def track_menu_items(menu_distinct, word_to_menu, reviews_clean_wnl, review_rati
 						seen_menu_items.add(menu_hit)
 						menu_info[menu_hit][0] += 1
 						menu_info[menu_hit][1] += review_ratings[i]
-						#Max row csv can take is 32,000 characters :) 
 						if (len(menu_info[menu_hit][3]) < 3 and len(reviews_original[i]) < 5000):
 							menu_info[menu_hit][3].append(reviews_original[i])
 							menu_info[menu_hit][4].append(hit_word)
